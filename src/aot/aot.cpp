@@ -193,6 +193,7 @@ bool build_binary(const std_filesystem::path &shim,
                      AOT_SECDATA_TEMPFILE,
                      shim.c_str(),
                      out.c_str());
+  std::cerr << ">>>> objcopy cmd is: " << cmd << std::endl;
   if (written < 0 || written == sizeof(cmd)) {
     LOG(ERROR) << "Failed to construct objcopy command";
     goto out;

@@ -15,6 +15,9 @@ endif()
 
 add_library(required_resources required_resources.cpp)
 add_dependencies(required_resources parser)
+if (NOT DEFINED BPFTRACE2)
+  set(BPFTRACE2 bpftrace2)
+endif ()
 
 add_library(runtime
   attached_probe.cpp
@@ -63,8 +66,13 @@ add_executable(${BPFTRACE}
 )
 target_include_directories(${BPFTRACE} PUBLIC ${CMAKE_BINARY_DIR}/src)
 
+add_executable(${BPFTRACE2}
+  ${MAIN_SRC}
+)
+
 install(TARGETS ${BPFTRACE} DESTINATION ${CMAKE_INSTALL_BINDIR})
 target_link_libraries(${BPFTRACE} libbpftrace)
+target_link_libraries(${BPFTRACE2} libbpftrace)
 
 if (BUILD_FUZZ)
   target_compile_options(${BPFTRACE} PUBLIC "-DFUZZ")
@@ -224,6 +232,7 @@ endif()
 
 unset(MAIN_SRC)
 unset(BPFTRACE)
+unset(BPFTRACE2)
 
 add_subdirectory(aot)
 add_subdirectory(arch)
