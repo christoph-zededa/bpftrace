@@ -26,7 +26,7 @@
 #define AOT_ELF_SECTION ".btaot"
 static constexpr auto AOT_MAGIC = 0xA07;
 static constexpr auto AOT_SHIM_NAME = "bpftrace-aotrt";
-static constexpr auto AOT_SECDATA_TEMPFILE = ".temp_btaot";
+static constexpr auto AOT_SECDATA_TEMPFILE = "temp_btaot";
 
 // AOT payload will have this header at the beginning. We don't worry about
 // versioning the header b/c we enforce that an AOT compiled script may only
@@ -204,8 +204,8 @@ bool build_binary(const std_filesystem::path &shim,
 
   ret = true;
 out:
-  if (!std_filesystem::remove(AOT_SECDATA_TEMPFILE, ec) || ec)
-    LOG(ERROR) << "Failed to remove " << AOT_SECDATA_TEMPFILE << ": " << ec;
+  //if (!std_filesystem::remove(AOT_SECDATA_TEMPFILE, ec) || ec)
+  //  LOG(ERROR) << "Failed to remove " << AOT_SECDATA_TEMPFILE << ": " << ec;
   return ret;
 }
 
