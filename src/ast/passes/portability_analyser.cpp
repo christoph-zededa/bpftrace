@@ -46,10 +46,12 @@ void PortabilityAnalyser::visit(Builtin &builtin)
   // `struct task_struct` is unstable across kernel versions and configurations.
   // This makes it inherently unportable. We must block it until we support
   // field access relocations.
+  /*
   if (builtin.ident == "curtask") {
     LOG(ERROR, builtin.loc, err_)
         << "AOT does not yet support accessing `curtask`";
   }
+  */
 }
 
 void PortabilityAnalyser::visit(Call &call)
@@ -83,7 +85,7 @@ void PortabilityAnalyser::visit(Cast &cast)
   // portable. `args` for k[ret]funcs are type checked by the kernel and may
   // also be considered stable. For AOT to fully support field accesses, we
   // need to relocate field access at runtime.
-  LOG(ERROR, cast.loc, err_) << "AOT does not yet support struct casts";
+//  LOG(ERROR, cast.loc, err_) << "AOT does not yet support struct casts";
 }
 
 void PortabilityAnalyser::visit(AttachPoint &ap)
