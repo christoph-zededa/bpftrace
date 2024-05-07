@@ -50,8 +50,10 @@ static int btf_type_size(const struct btf_type *t)
       return base_size + sizeof(__u32);
     case BTF_KIND_ENUM:
       return base_size + vlen * sizeof(struct btf_enum);
+    #if 0
     case BTF_KIND_ENUM64:
       return base_size + vlen * sizeof(struct btf_enum64);
+    #endif
     case BTF_KIND_ARRAY:
       return base_size + sizeof(struct btf_array);
     case BTF_KIND_STRUCT:
