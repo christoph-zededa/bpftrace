@@ -50,6 +50,7 @@ static int btf_type_size(const struct btf_type *t)
       return base_size + sizeof(__u32);
     case BTF_KIND_ENUM:
       return base_size + vlen * sizeof(struct btf_enum);
+    #if 0
     case BTF_KIND_ENUM64:
       /* struct btf_enum64 is not available in UAPI header until v6.0,
        * calculate its size with array instead. Its definition is:
@@ -60,7 +61,7 @@ static int btf_type_size(const struct btf_type *t)
        *	__u32	val_hi32;
        * };
        */
-      return base_size + vlen * sizeof(__u32[3]);
+    #endif
     case BTF_KIND_ARRAY:
       return base_size + sizeof(struct btf_array);
     case BTF_KIND_STRUCT:
