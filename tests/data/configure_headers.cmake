@@ -4,7 +4,7 @@
 
 file(READ ${BTF_DATA_HEX} BTF_DATA)
 file(READ ${FUNC_LIST_HEX} FUNC_LIST)
-file(READ ${DWARF_DATA_HEX} DWARF_DATA)
+#file(READ ${DWARF_DATA_HEX} DWARF_DATA)
 
 configure_file(${BTF_DATA_H_IN} ${BTF_DATA_H})
 configure_file(${DWARF_DATA_H_IN} ${DWARF_DATA_H})
